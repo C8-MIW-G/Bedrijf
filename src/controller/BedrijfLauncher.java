@@ -3,6 +3,7 @@ package controller;
 import model.Afdeling;
 import model.Persoon;
 import model.Werknemer;
+import model.Zzper;
 
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
@@ -19,19 +20,19 @@ public class BedrijfLauncher {
         afdelingen[2] = new Afdeling("Management", "Almere");
         afdelingen[3] = new Afdeling("Documentatie", "Gouda");
 
-        System.out.println(afdelingen[3]);
+        Werknemer baas = new Werknemer("Mark", "Den Haag", afdelingen[2], 10000);
+        Werknemer medewerker = new Werknemer("Caroline", "Delft", afdelingen[1], 4000);
+        Zzper assistent = new Zzper("Klaas", "Diemen", afdelingen[3], 50);
 
-        Persoon baas = new Werknemer("Mark", "Den Haag", afdelingen[2], 10000);
-        Persoon medewerker = new Werknemer("Caroline", "Delft", afdelingen[1], 4000);
-        Persoon assistent = new Persoon("Klaas");
+        assistent.huurIn(160);
 
-        System.out.printf("Het aantal persoon in het bedrijf is %d\n", Persoon.aantalPersonen);
-        System.out.printf("%s werkt in %s en woont in %s\n",
-                baas.getNaam(), baas.getAfdeling().getAfdelingsPlaats(), baas.getWoonplaats());
-//        System.out.printf("%s werkt op de afdeling %s en verdient %.2f\n",
-//                medewerker.getNaam(), medewerker.getAfdeling().getAfdelingsNaam(), medewerker.getMaandSalaris());
-        System.out.printf("%s werkt op de afdeling %s en woont in %s\n",
-                assistent.getNaam(), assistent.getAfdeling().getAfdelingsNaam(), assistent.getWoonplaats());
+        System.out.printf("Het aantal personen in het bedrijf is %d\n", Persoon.aantalPersonen);
         System.out.println(baas);
+        System.out.println(medewerker);
+        System.out.println(assistent);
+        System.out.println();
+        System.out.printf("%s verdient %.2f per jaar\n", baas.getNaam(), baas.berekenJaarInkomen());
+        System.out.printf("%s verdient %.2f per jaar\n", medewerker.getNaam(), medewerker.berekenJaarInkomen());
+        System.out.printf("%s verdient %.2f per jaar\n", assistent.getNaam(), assistent.berekenJaarInkomen());
     }
 }
