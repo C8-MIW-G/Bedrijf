@@ -18,14 +18,10 @@ public class Werknemer extends Persoon {
     }
 
     public Werknemer(String naam) {
-//        super(naam);
-//        this.maandSalaris = DEFAULT_MAAND_SALARIS;
         this(naam, DEFAULT_WOONPLAATS, new Afdeling(), DEFAULT_MAAND_SALARIS);
     }
 
     public Werknemer() {
-//        super();
-//        this.maandSalaris = DEFAULT_MAAND_SALARIS;
         this(DEFAULT_NAAM);
     }
 
@@ -58,12 +54,9 @@ public class Werknemer extends Persoon {
     }
 
     public void setMaandSalaris(double maandSalaris) {
-        if (maandSalaris >= 0) {
-            this.maandSalaris = maandSalaris;
-        } else {
-            System.out.printf("%.2f is geen geldig maandsalaris, het maandsalaris wordt op %.2f gezet.\n",
-                    maandSalaris, DEFAULT_MAAND_SALARIS);
-            this.maandSalaris = DEFAULT_MAAND_SALARIS;
+        if (maandSalaris < 0) {
+            throw new IllegalArgumentException("Het maandsalaris mag niet negatief zijn.");
         }
+        this.maandSalaris = maandSalaris;
     }
 }
