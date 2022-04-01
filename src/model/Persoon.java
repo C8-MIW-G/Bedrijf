@@ -5,7 +5,7 @@ package model;
  * <p>
  * Beschrijft de eigenschappen van een persoon betrokken bij ons bedrijf
  */
-public abstract class Persoon {
+public abstract class Persoon implements Comparable<Persoon> {
     protected static final String DEFAULT_WOONPLAATS = "Onbekend";
     protected static final String DEFAULT_NAAM = "Onbekend";
 
@@ -32,6 +32,11 @@ public abstract class Persoon {
     }
 
     public abstract double berekenJaarInkomen();
+
+    @Override
+    public int compareTo(Persoon anderePersoon) {
+        return this.naam.compareTo(anderePersoon.naam);
+    }
 
     @Override
     public String toString() {
