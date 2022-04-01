@@ -5,6 +5,8 @@ import model.Persoon;
 import model.Werknemer;
 import model.Zzper;
 
+import java.util.ArrayList;
+
 /**
  * @author Vincent Velthuizen <v.r.velthuizen@pl.hanze.nl>
  * <p>
@@ -20,26 +22,29 @@ public class BedrijfLauncher {
         afdelingen[2] = new Afdeling("Management", "Almere");
         afdelingen[3] = new Afdeling("Documentatie", "Gouda");
 
-        Werknemer baas = new Werknemer("Mark", "Den Haag", afdelingen[2], 10000);
-        Werknemer medewerker = new Werknemer("Caroline", "Delft", afdelingen[1], 4000);
-        Zzper assistent = new Zzper("Klaas", "Diemen", afdelingen[3], 50);
-        Zzper projectleider = new Zzper("Ronald", "Zaandam", afdelingen[0], 80);
+        ArrayList<Persoon> personen = new ArrayList<>();
 
-        assistent.huurIn(160);
-        projectleider.huurIn(320);
+        personen.add(new Werknemer("Mark", "Den Haag", afdelingen[2], 10000));
+        personen.add(new Werknemer("Angelique", "Rotterdam", afdelingen[2],5000));
+        personen.add(new Werknemer("Caroline", "Delft", afdelingen[1], 4000));
+        personen.add(new Zzper("Klaas", "Diemen", afdelingen[3], 50.00));
+        personen.add(new Zzper("Ronald", "Zaandam", afdelingen[0], 80.00));
+        personen.add(new Zzper("Jannie", "Utrecht", afdelingen[0], 60.00));
+        personen.add(new Zzper("Anne", "Zwolle", afdelingen[0], 40.00));
 
-        Persoon[] personen = new Persoon[4];
-        personen[0] = baas;
-        personen[1] = medewerker;
-        personen[2] = assistent;
-        personen[3] = projectleider;
-
-        for (int i = 0; i < personen.length; i++) {
-            toonJaarInkomen(personen[i]);
+        for (Persoon persoon : personen) {
+            if (persoon instanceof Zzper) {
+                ((Zzper) persoon).huurIn(320);
+            }
         }
+
+        for (Persoon persoon : personen) {
+            toonJaarInkomen(persoon);
+        }
+
     }
 
     public static void toonJaarInkomen(Persoon persoon) {
-        System.out.printf("%8s verdient %9.2f per jaar\n", persoon.getNaam(), persoon.berekenJaarInkomen());
+        System.out.printf("%s verdient %.2f per jaar\n", persoon.getNaam(), persoon.berekenJaarInkomen());
     }
 }
